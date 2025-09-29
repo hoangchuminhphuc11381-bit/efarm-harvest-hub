@@ -104,11 +104,8 @@ const Header = () => {
         <div className="container mx-auto px-4">
           <ul className="flex items-center space-x-8 py-3 text-sm font-medium">
             <li><a href="/" className="text-secondary-foreground hover:text-primary transition-colors">Trang chủ</a></li>
-            <li><a href="/products/tea" className="text-secondary-foreground hover:text-tea transition-colors">Trà</a></li>
-            <li><a href="/products/cashew" className="text-secondary-foreground hover:text-cashew transition-colors">Hạt điều</a></li>
-            <li><a href="/products/durian" className="text-secondary-foreground hover:text-durian transition-colors">Sầu riêng</a></li>
-            <li><a href="/products/coffee" className="text-secondary-foreground hover:text-primary transition-colors">Cà phê</a></li>
-            <li><a href="/auction" className="text-secondary-foreground hover:text-accent transition-colors">Đấu giá B2B</a></li>
+            <li><a href="/products" className="text-secondary-foreground hover:text-primary transition-colors">Sản phẩm</a></li>
+            <li><a href="/auction" className="text-secondary-foreground hover:text-accent transition-colors">Đấu giá</a></li>
             <li><a href="/suppliers" className="text-secondary-foreground hover:text-primary transition-colors">Nhà cung cấp</a></li>
             <li><a href="/services" className="text-secondary-foreground hover:text-primary transition-colors">Dịch vụ xuất khẩu</a></li>
             <li><a href="/market" className="text-secondary-foreground hover:text-primary transition-colors">Báo giá thị trường</a></li>
