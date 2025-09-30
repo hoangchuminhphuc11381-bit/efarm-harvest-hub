@@ -7,7 +7,7 @@ import logo from "@/assets/logo.png";
 const Footer = () => {
   const footerLinks = {
     company: [
-      { name: "Về eFarmVn", href: "/about" },
+      { name: "Về eFarmVn", href: "/contact" },
       { name: "Tầm nhìn & Sứ mệnh", href: "/vision" },
       { name: "Đội ngũ", href: "/team" },
       { name: "Nghề nghiệp", href: "/careers" },
@@ -15,8 +15,8 @@ const Footer = () => {
     ],
     services: [
       { name: "Mua bán nông sản", href: "/products" },
-      { name: "Đấu giá B2B", href: "/auction" },
-      { name: "Dịch vụ xuất khẩu", href: "/export" },
+      { name: "Đấu giá", href: "/auction" },
+      { name: "Dịch vụ xuất khẩu", href: "/services" },
       { name: "Kiểm định chất lượng", href: "/quality" },
       { name: "Logistics", href: "/logistics" }
     ],

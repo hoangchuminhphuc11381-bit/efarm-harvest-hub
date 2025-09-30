@@ -11,6 +11,9 @@ import SellNow from "./pages/SellNow";
 import Checkout from "./pages/Checkout";
 import Auth from "./pages/Auth";
 import Business from "./pages/Business";
+import Suppliers from "./pages/Suppliers";
+import ExportServices from "./pages/ExportServices";
+import MarketPrices from "./pages/MarketPrices";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +33,9 @@ const App = () => (
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/business" element={<Business />} />
+          <Route path="/suppliers" element={<Suppliers />} />
+          <Route path="/services" element={<ExportServices />} />
+          <Route path="/market" element={<MarketPrices />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

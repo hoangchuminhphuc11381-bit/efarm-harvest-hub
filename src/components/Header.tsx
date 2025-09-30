@@ -110,6 +110,7 @@ const Header = () => {
             <li><a href="/services" className="text-secondary-foreground hover:text-primary transition-colors">Dịch vụ xuất khẩu</a></li>
             <li><a href="/market" className="text-secondary-foreground hover:text-primary transition-colors">Báo giá thị trường</a></li>
             <li><a href="/contact" className="text-secondary-foreground hover:text-primary transition-colors">Liên hệ</a></li>
+            <li><a href="/checkout" className="text-secondary-foreground hover:text-primary transition-colors">Thanh toán</a></li>
           </ul>
         </div>
       </nav>
