@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import productTea from "@/assets/product-tea.jpg";
 import productCashew from "@/assets/product-cashew.jpg";
 import productDurian from "@/assets/product-durian.jpg";
+import productCoffee from "@/assets/product-cafe.jpg";
 
 const Products = () => {
   const products = [
@@ -56,7 +57,7 @@ const Products = () => {
       id: "coffee",
       title: "Cà Phê Arabica Đắk Lắk",
       description: "Cà phê Arabica chất lượng cao từ cao nguyên Đắk Lắk, hương vị đậm đà đặc trưng.",
-      image: productTea, // Temporary placeholder
+      image: productCoffee, // Temporary placeholder
       icon: CoffeeIcon,
       origin: "Đắk Lắk, Tây Nguyên",
       startingPrice: "120.000 VNĐ/kg",

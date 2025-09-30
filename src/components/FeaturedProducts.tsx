@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin, Award, Timer, Heart } from "lucide-react";
 import productShowcase from "@/assets/product-showcase.jpg";
+import productCashew from "@/assets/product-cashew.jpg";
+import productDurian from "@/assets/product-durian.jpg";
 
 const FeaturedProducts = () => {
   const products = [
@@ -34,7 +36,7 @@ const FeaturedProducts = () => {
       rating: 4.9,
       reviews: 89,
       certification: "HACCP",
-      image: productShowcase,
+      image: productCashew,
       status: "Đấu giá",
       isAuction: true,
       timeLeft: "2h 15m",
@@ -51,7 +53,7 @@ const FeaturedProducts = () => {
       rating: 4.7,
       reviews: 203,
       certification: "VietGAP",
-      image: productShowcase,
+      image: productDurian,
       status: "Có sẵn",
       isAuction: false,
       tags: ["Tươi", "Ri6", "Cao cấp"]
