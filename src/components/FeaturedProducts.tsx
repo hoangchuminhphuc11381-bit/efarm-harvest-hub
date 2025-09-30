@@ -5,8 +5,10 @@ import { Star, MapPin, Award, Timer, Heart } from "lucide-react";
 import productShowcase from "@/assets/product-showcase.jpg";
 import productCashew from "@/assets/product-cashew.jpg";
 import productDurian from "@/assets/product-durian.jpg";
+import { useTranslation } from "react-i18next";
 
 const FeaturedProducts = () => {
+  const { t, i18n } = useTranslation();
   const products = [
     {
       id: 1,
@@ -83,14 +85,14 @@ const FeaturedProducts = () => {
         <div className="flex items-center justify-between mb-12">
           <div>
             <h2 className="text-3xl font-bold text-foreground mb-2">
-              Sản phẩm nổi bật
+              {t("featured.title")}
             </h2>
             <p className="text-muted-foreground">
-              Những sản phẩm chất lượng cao được đánh giá tốt nhất
+              {t("featured.subtitle")}
             </p>
           </div>
           <Button variant="outline" className="hidden md:flex" onClick={() => window.location.href = '/products'}>
-            Xem tất cả sản phẩm
+            {t("featured.viewAll")}
           </Button>
         </div>
 
@@ -112,7 +114,7 @@ const FeaturedProducts = () => {
                       : "bg-success text-success-foreground"
                   }`}
                 >
-                  {product.status}
+                  {product.isAuction ? t("featured.auction") : t("featured.available")}
                 </Badge>
 
                 {/* Auction timer */}
@@ -157,7 +159,7 @@ const FeaturedProducts = () => {
                     <Star className="h-4 w-4 fill-accent text-accent" />
                     <span className="font-medium text-sm">{product.rating}</span>
                   </div>
-                  <span className="text-xs text-muted-foreground">({product.reviews} đánh giá)</span>
+                  <span className="text-xs text-muted-foreground">({product.reviews} {t("featured.reviews")})</span>
                   <Badge variant="outline" className="ml-auto">
                     <Award className="h-3 w-3 mr-1" />
                     {product.certification}
@@ -179,27 +181,27 @@ const FeaturedProducts = () => {
                 <div className="mb-4">
                   <div className="flex items-baseline gap-2">
                     <span className="text-2xl font-bold text-primary">
-                      {parseInt(product.price).toLocaleString("vi-VN")}
+                      {parseInt(product.price).toLocaleString(i18n.language === "vi" ? "vi-VN" : i18n.language === "zh" ? "zh-CN" : "en-US")}
                     </span>
-                    <span className="text-sm text-muted-foreground">VNĐ/{product.unit}</span>
+                    <span className="text-sm text-muted-foreground">{t("featured.currencyUnit")}/{product.unit}</span>
                   </div>
-                  <p className="text-xs text-muted-foreground">MOQ: {product.moq}</p>
-                  <p className="text-xs text-muted-foreground">Nhà cung cấp: {product.supplier}</p>
+                  <p className="text-xs text-muted-foreground">{t("featured.moq")}: {product.moq}</p>
+                  <p className="text-xs text-muted-foreground">{t("featured.supplier")}: {product.supplier}</p>
                 </div>
 
                 {/* Actions */}
                 <div className="space-y-2">
                   {product.isAuction ? (
                     <Button className="w-full bg-gradient-harvest hover:bg-accent" onClick={() => window.location.href = '/auction'}>
-                      Tham gia đấu giá
+                      {t("featured.joinAuction")}
                     </Button>
                   ) : (
                     <Button className="w-full bg-gradient-primary hover:bg-primary-hover" onClick={() => window.location.href = '/checkout'}>
-                      Yêu cầu báo giá
+                      {t("featured.requestQuote")}
                     </Button>
                   )}
                   <Button variant="outline" className="w-full" size="sm" onClick={() => window.location.href = '/products'}>
-                    Xem chi tiết
+                    {t("featured.viewDetail")}
                   </Button>
                 </div>
               </CardContent>
@@ -210,7 +212,7 @@ const FeaturedProducts = () => {
         {/* Mobile view all button */}
         <div className="mt-8 text-center md:hidden">
           <Button className="bg-gradient-primary hover:bg-primary-hover" onClick={() => window.location.href = '/products'}>
-            Xem tất cả sản phẩm
+            {t("featured.viewAll")}
           </Button>
         </div>
       </div>

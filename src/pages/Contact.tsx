@@ -6,9 +6,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -20,8 +22,8 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Tin nhắn đã được gửi!",
-      description: "Chúng tôi sẽ phản hồi trong vòng 24 giờ.",
+      title: t('contact.toastTitle'),
+      description: t('contact.toastDesc'),
     });
     setFormData({ name: '', phone: '', email: '', subject: '', message: '' });
   };
@@ -35,12 +37,8 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="bg-gradient-primary text-white py-20">
         <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Liên Hệ Với Chúng Tôi
-          </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Chúng tôi luôn sẵn sàng hỗ trợ bạn trong việc kết nối nông sản Việt Nam
-          </p>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">{t('contact.heroTitle')}</h1>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto">{t('contact.heroDesc')}</p>
         </div>
       </section>
 
@@ -68,7 +66,7 @@ const Contact = () => {
                     <MapPin className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Địa chỉ</h3>
+                    <h3 className="font-semibold text-lg mb-2">{t('contact.address')}</h3>
                     <p className="text-foreground/70">
                       123 Đường Nông Sản, Phường Tân Bình<br />
                       Quận 1, TP. Hồ Chí Minh, Việt Nam
@@ -85,7 +83,7 @@ const Contact = () => {
                     <Phone className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Điện thoại</h3>
+                    <h3 className="font-semibold text-lg mb-2">{t('contact.phone')}</h3>
                     <p className="text-foreground/70">
                       Hotline: (+84) 123 456 789<br />
                       Hỗ trợ kỹ thuật: (+84) 987 654 321
@@ -102,7 +100,7 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Email</h3>
+                    <h3 className="font-semibold text-lg mb-2">{t('contact.email')}</h3>
                     <p className="text-foreground/70">
                       Liên hệ chung: info@efarmvn.com<br />
                       Hỗ trợ khách hàng: support@efarmvn.com
@@ -119,7 +117,7 @@ const Contact = () => {
                     <Clock className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Giờ làm việc</h3>
+                    <h3 className="font-semibold text-lg mb-2">{t('contact.workingHours')}</h3>
                     <p className="text-foreground/70">
                       Thứ 2 - Thứ 6: 8:00 - 17:00<br />
                       Thứ 7: 8:00 - 12:00<br />
@@ -135,14 +133,14 @@ const Contact = () => {
         {/* Contact Form */}
         <Card className="border-0 shadow-elegant">
           <CardHeader>
-            <CardTitle className="text-2xl text-primary">Gửi Tin Nhắn Cho Chúng Tôi</CardTitle>
-            <p className="text-foreground/70">Chúng tôi sẽ phản hồi trong vòng 24 giờ</p>
+            <CardTitle className="text-2xl text-primary">{t('contact.sendUs')}</CardTitle>
+            <p className="text-foreground/70">{t('contact.willReply')}</p>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-foreground/80">Họ và tên *</label>
+                  <label className="text-sm font-medium text-foreground/80">{t('contact.name')}</label>
                   <Input
                     required
                     placeholder="Nhập họ và tên"
@@ -151,7 +149,7 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-foreground/80">Số điện thoại *</label>
+                  <label className="text-sm font-medium text-foreground/80">{t('auth.phone')}</label>
                   <Input
                     required
                     placeholder="Nhập số điện thoại"
@@ -162,7 +160,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-foreground/80">Email *</label>
+                <label className="text-sm font-medium text-foreground/80">{t('auth.email')} *</label>
                 <Input
                   type="email"
                   required
@@ -173,26 +171,26 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-foreground/80">Chủ đề</label>
+                <label className="text-sm font-medium text-foreground/80">{t('contact.subject')}</label>
                 <Select onValueChange={(value) => handleInputChange('subject', value)}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Chọn chủ đề" />
+                    <SelectValue placeholder={t('contact.selectSubject')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="support">Hỗ trợ kỹ thuật</SelectItem>
-                    <SelectItem value="farmer">Đăng ký nông dân</SelectItem>
-                    <SelectItem value="buyer">Đăng ký người mua</SelectItem>
-                    <SelectItem value="report">Báo cáo sự cố</SelectItem>
-                    <SelectItem value="other">Khác</SelectItem>
+                    <SelectItem value="support">{t('contact.subjectSupport')}</SelectItem>
+                    <SelectItem value="farmer">{t('contact.subjectFarmer')}</SelectItem>
+                    <SelectItem value="buyer">{t('contact.subjectBuyer')}</SelectItem>
+                    <SelectItem value="report">{t('contact.subjectReport')}</SelectItem>
+                    <SelectItem value="other">{t('contact.subjectOther')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div>
-                <label className="text-sm font-medium text-foreground/80">Tin nhắn *</label>
+                <label className="text-sm font-medium text-foreground/80">{t('contact.message')}</label>
                 <Textarea
                   required
-                  placeholder="Nhập nội dung tin nhắn..."
+                  placeholder={t('contact.messagePlaceholder')}
                   className="min-h-[120px]"
                   value={formData.message}
                   onChange={(e) => handleInputChange('message', e.target.value)}
@@ -201,7 +199,7 @@ const Contact = () => {
 
               <Button type="submit" className="w-full">
                 <Send className="w-4 h-4 mr-2" />
-                Gửi Tin Nhắn
+                {t('contact.sendMessage')}
               </Button>
             </form>
           </CardContent>
@@ -212,15 +210,15 @@ const Contact = () => {
       <section className="bg-muted py-16">
         <div className="container mx-auto px-6">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-primary mb-4">Vị Trí Của Chúng Tôi</h2>
-            <p className="text-foreground/70">Ghé thăm văn phòng của chúng tôi để được tư vấn trực tiếp</p>
+            <h2 className="text-3xl font-bold text-primary mb-4">{t('contact.mapTitle')}</h2>
+            <p className="text-foreground/70">{t('contact.mapDesc')}</p>
           </div>
           <Card className="border-0 shadow-elegant overflow-hidden">
             <div className="bg-gradient-primary/10 h-96 flex items-center justify-center">
               <div className="text-center">
                 <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
-                <p className="text-xl font-semibold text-primary">Google Maps</p>
-                <p className="text-foreground/70">Bản đồ sẽ được tích hợp tại đây</p>
+                <p className="text-xl font-semibold text-primary">{t('contact.mapPlaceholder')}</p>
+                <p className="text-foreground/70">{t('contact.mapWillBeIntegrated')}</p>
               </div>
             </div>
           </Card>

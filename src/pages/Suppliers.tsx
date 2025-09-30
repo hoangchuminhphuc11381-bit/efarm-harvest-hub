@@ -4,8 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Phone, Mail, Globe, Award, TrendingUp, CheckCircle2, Home } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useTranslation } from "react-i18next";
 
 const Suppliers = () => {
+  const { t } = useTranslation();
   const suppliers = [
     {
       id: 1,
@@ -126,14 +128,12 @@ const Suppliers = () => {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-4xl font-bold text-foreground mb-2">Nhà Cung Cấp Uy Tín</h1>
-              <p className="text-muted-foreground">
-                Kết nối với các nhà cung cấp nông sản hàng đầu Việt Nam
-              </p>
+              <h1 className="text-4xl font-bold text-foreground mb-2">{t('suppliers.heroTitle')}</h1>
+              <p className="text-muted-foreground">{t('suppliers.heroDesc')}</p>
             </div>
             <Button variant="outline" onClick={() => window.location.href = '/'}>
               <Home className="h-4 w-4 mr-2" />
-              Trang chủ
+              {t('common.backHome')}
             </Button>
           </div>
         </div>
@@ -143,25 +143,25 @@ const Suppliers = () => {
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-2xl font-bold text-primary">200+</CardTitle>
-              <CardDescription>Nhà cung cấp đã xác minh</CardDescription>
+              <CardDescription>{t('suppliers.statsVerified')}</CardDescription>
             </CardHeader>
           </Card>
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-2xl font-bold text-primary">50+</CardTitle>
-              <CardDescription>Thị trường xuất khẩu</CardDescription>
+              <CardDescription>{t('suppliers.statsMarkets')}</CardDescription>
             </CardHeader>
           </Card>
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-2xl font-bold text-primary">500K+</CardTitle>
-              <CardDescription>Tấn hàng xuất khẩu/năm</CardDescription>
+              <CardDescription>{t('suppliers.statsTons')}</CardDescription>
             </CardHeader>
           </Card>
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-2xl font-bold text-primary">100%</CardTitle>
-              <CardDescription>Đảm bảo chất lượng</CardDescription>
+              <CardDescription>{t('suppliers.statsQuality')}</CardDescription>
             </CardHeader>
           </Card>
         </div>
@@ -178,7 +178,7 @@ const Suppliers = () => {
                       {supplier.verified && (
                         <Badge variant="default" className="bg-primary">
                           <CheckCircle2 className="h-3 w-3 mr-1" />
-                          Đã xác minh
+                          {t('suppliers.verified')}
                         </Badge>
                       )}
                     </div>
@@ -201,7 +201,7 @@ const Suppliers = () => {
                 
                 {/* Products */}
                 <div>
-                  <h4 className="text-sm font-semibold mb-2">Sản phẩm chính:</h4>
+                  <h4 className="text-sm font-semibold mb-2">{t('suppliers.mainProducts')}</h4>
                   <div className="flex flex-wrap gap-2">
                     {supplier.products.map((product, idx) => (
                       <Badge key={idx} variant="secondary">{product}</Badge>
@@ -213,7 +213,7 @@ const Suppliers = () => {
                 <div>
                   <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
                     <Award className="h-4 w-4" />
-                    Chứng nhận:
+                    {t('suppliers.certifications')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {supplier.certifications.map((cert, idx) => (
@@ -225,11 +225,11 @@ const Suppliers = () => {
                 {/* Capacity & Markets */}
                 <div className="grid grid-cols-2 gap-4 pt-2 border-t">
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">Công suất</p>
+                    <p className="text-xs text-muted-foreground mb-1">{t('suppliers.capacity')}</p>
                     <p className="text-sm font-medium">{supplier.capacity}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">Thị trường</p>
+                    <p className="text-xs text-muted-foreground mb-1">{t('suppliers.markets')}</p>
                     <p className="text-sm font-medium">{supplier.exportMarkets.join(", ")}</p>
                   </div>
                 </div>
@@ -250,7 +250,7 @@ const Suppliers = () => {
                   </div>
                 </div>
 
-                <Button className="w-full">Liên hệ nhà cung cấp</Button>
+                <Button className="w-full">{t('suppliers.contactSupplier')}</Button>
               </CardContent>
             </Card>
           ))}
@@ -259,15 +259,9 @@ const Suppliers = () => {
         {/* CTA */}
         <Card className="mt-8 bg-gradient-primary">
           <CardContent className="p-8 text-center">
-            <h3 className="text-2xl font-bold text-primary-foreground mb-4">
-              Bạn là nhà cung cấp?
-            </h3>
-            <p className="text-primary-foreground/90 mb-6">
-              Đăng ký để trở thành đối tác của eFarmVn và tiếp cận hàng nghìn khách hàng tiềm năng
-            </p>
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90">
-              Đăng ký làm nhà cung cấp
-            </Button>
+            <h3 className="text-2xl font-bold text-primary-foreground mb-4">{t('suppliers.ctaTitle')}</h3>
+            <p className="text-primary-foreground/90 mb-6">{t('suppliers.ctaDesc')}</p>
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90">{t('suppliers.ctaButton')}</Button>
           </CardContent>
         </Card>
       </main>

@@ -8,8 +8,10 @@ import productTea from "@/assets/product-tea.jpg";
 import productCashew from "@/assets/product-cashew.jpg";
 import productDurian from "@/assets/product-durian.jpg";
 import productCoffee from "@/assets/product-cafe.jpg";
+import { useTranslation } from "react-i18next";
 
 const Products = () => {
+  const { t } = useTranslation();
   const products = [
     {
       id: "tea",
@@ -75,9 +77,9 @@ const Products = () => {
         <div className="container mx-auto flex items-center gap-4">
           <Button variant="ghost" onClick={() => window.location.href = '/'}>
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Trang chủ
+            {t('common.backHome')}
           </Button>
-          <h1 className="text-xl font-semibold">Danh mục sản phẩm</h1>
+          <h1 className="text-xl font-semibold">{t('productsPage.header', { defaultValue: 'Danh mục sản phẩm' })}</h1>
         </div>
       </div>
       
@@ -86,10 +88,8 @@ const Products = () => {
         {/* Hero Section */}
         <section className="bg-gradient-harvest text-accent-foreground py-16">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl font-bold mb-4">Sản Phẩm Nông Sản Việt Nam</h1>
-            <p className="text-lg opacity-90 max-w-2xl mx-auto">
-              Khám phá các sản phẩm nông sản chất lượng cao từ các vùng trồng nổi tiếng của Việt Nam
-            </p>
+            <h1 className="text-4xl font-bold mb-4">{t('productsPage.heroTitle', { defaultValue: 'Sản Phẩm Nông Sản Việt Nam' })}</h1>
+            <p className="text-lg opacity-90 max-w-2xl mx-auto">{t('productsPage.heroDesc', { defaultValue: 'Khám phá các sản phẩm nông sản chất lượng cao từ các vùng trồng nổi tiếng của Việt Nam' })}</p>
           </div>
         </section>
 
@@ -108,7 +108,7 @@ const Products = () => {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground">
-                        Đấu giá
+                        {t('productsPage.auctionBadge', { defaultValue: 'Đấu giá' })}
                       </Badge>
                     </div>
                     
@@ -131,26 +131,26 @@ const Products = () => {
                     <CardContent className="pt-0">
                       <div className="space-y-3 mb-6">
                         <div className="flex justify-between items-center text-sm">
-                          <span className="text-muted-foreground">Xuất xứ:</span>
+                          <span className="text-muted-foreground">{t('productsPage.origin', { defaultValue: 'Xuất xứ:' })}</span>
                           <span className="font-medium text-foreground text-right">{product.origin}</span>
                         </div>
                         <div className="flex justify-between items-center text-sm">
-                          <span className="text-muted-foreground">Số lượng:</span>
+                          <span className="text-muted-foreground">{t('productsPage.quantity', { defaultValue: 'Số lượng:' })}</span>
                           <span className="font-medium text-foreground">{product.quantity}</span>
                         </div>
                         <div className="flex justify-between items-center text-sm">
-                          <span className="text-muted-foreground">Giá khởi điểm:</span>
+                          <span className="text-muted-foreground">{t('productsPage.startingPrice', { defaultValue: 'Giá khởi điểm:' })}</span>
                           <span className="font-bold text-primary">{product.startingPrice}</span>
                         </div>
                         {product.unit && (
                           <div className="flex justify-between items-center text-sm">
-                            <span className="text-muted-foreground">Đơn vị:</span>
+                            <span className="text-muted-foreground">{t('productsPage.unit', { defaultValue: 'Đơn vị:' })}</span>
                             <span className="font-medium text-foreground text-right">{product.unit}</span>
                           </div>
                         )}
                         {product.harvestTime && (
                           <div className="flex justify-between items-center text-sm">
-                            <span className="text-muted-foreground">Thời gian:</span>
+                            <span className="text-muted-foreground">{t('productsPage.time', { defaultValue: 'Thời gian:' })}</span>
                             <span className="font-medium text-foreground text-right">{product.harvestTime}</span>
                           </div>
                         )}
@@ -161,7 +161,7 @@ const Products = () => {
                           className="w-full bg-gradient-primary hover:bg-primary-hover group"
                           onClick={() => window.location.href = `/auction?product=${product.id}`}
                         >
-                          Tham gia đấu giá
+                          {t('featured.joinAuction')}
                           <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                         </Button>
                         <Button 
@@ -169,7 +169,7 @@ const Products = () => {
                           className="w-full border-border hover:bg-accent/10"
                           onClick={() => window.location.href = `/products/${product.id}`}
                         >
-                          Xem chi tiết
+                          {t('featured.viewDetail')}
                         </Button>
                       </div>
                     </CardContent>

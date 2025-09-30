@@ -6,9 +6,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowLeft, Building, Users, TrendingUp, Award, Mail, Phone, MapPin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslation } from 'react-i18next';
 
 const Business = () => {
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     companyName: '',
     businessType: '',
@@ -23,8 +25,8 @@ const Business = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Đăng ký thành công!",
-      description: "Chúng tôi sẽ liên hệ với bạn trong vòng 24 giờ.",
+      title: t('business.successTitle'),
+      description: t('business.successDesc'),
     });
     setFormData({
       companyName: '',
@@ -49,21 +51,17 @@ const Business = () => {
         <div className="container mx-auto flex items-center gap-4">
           <Button variant="ghost" onClick={() => window.location.href = '/'}>
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Trang chủ
+            {t('business.backHome')}
           </Button>
-          <h1 className="text-xl font-semibold">Đăng ký Doanh nghiệp</h1>
+          <h1 className="text-xl font-semibold">{t('business.header')}</h1>
         </div>
       </div>
 
       {/* Hero Section */}
       <section className="bg-gradient-primary text-white py-16">
         <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Đối Tác Doanh Nghiệp
-          </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Mở rộng thị trường, tăng doanh thu với nền tảng nông sản hàng đầu Việt Nam
-          </p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('business.heroTitle')}</h1>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto">{t('business.heroDesc')}</p>
         </div>
       </section>
 
@@ -71,7 +69,7 @@ const Business = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Benefits */}
           <div className="space-y-8">
-            <h2 className="text-3xl font-bold text-primary">Lợi ích khi trở thành đối tác</h2>
+            <h2 className="text-3xl font-bold text-primary">{t('business.benefitsTitle')}</h2>
             
             <div className="space-y-6">
               <Card className="border-0 shadow-elegant">
@@ -81,10 +79,8 @@ const Business = () => {
                       <TrendingUp className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg mb-2">Mở rộng thị trường</h3>
-                      <p className="text-foreground/70">
-                        Tiếp cận hàng ngàn khách hàng tiềm năng trong nước và quốc tế
-                      </p>
+                      <h3 className="font-semibold text-lg mb-2">{t('business.benefitMarket')}</h3>
+                      <p className="text-foreground/70">{t('business.benefitMarketDesc')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -97,10 +93,8 @@ const Business = () => {
                       <Users className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg mb-2">Hỗ trợ toàn diện</h3>
-                      <p className="text-foreground/70">
-                        Đội ngũ chuyên gia hỗ trợ marketing, logistics và chăm sóc khách hàng
-                      </p>
+                      <h3 className="font-semibold text-lg mb-2">{t('business.benefitSupport')}</h3>
+                      <p className="text-foreground/70">{t('business.benefitSupportDesc')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -113,10 +107,8 @@ const Business = () => {
                       <Award className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg mb-2">Chứng nhận chất lượng</h3>
-                      <p className="text-foreground/70">
-                        Hệ thống kiểm định và chứng nhận chất lượng quốc tế
-                      </p>
+                      <h3 className="font-semibold text-lg mb-2">{t('business.benefitQuality')}</h3>
+                      <p className="text-foreground/70">{t('business.benefitQualityDesc')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -129,10 +121,8 @@ const Business = () => {
                       <Building className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg mb-2">Công nghệ hiện đại</h3>
-                      <p className="text-foreground/70">
-                        Nền tảng giao dịch minh bạch, an toàn với công nghệ blockchain
-                      </p>
+                      <h3 className="font-semibold text-lg mb-2">{t('business.benefitTech')}</h3>
+                      <p className="text-foreground/70">{t('business.benefitTechDesc')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -143,53 +133,53 @@ const Business = () => {
           {/* Registration Form */}
           <Card className="border-0 shadow-elegant">
             <CardHeader>
-              <CardTitle className="text-2xl text-primary">Đăng Ký Ngay</CardTitle>
-              <p className="text-foreground/70">Điền thông tin để trở thành đối tác của chúng tôi</p>
+              <CardTitle className="text-2xl text-primary">{t('business.formTitle')}</CardTitle>
+              <p className="text-foreground/70">{t('business.formSub')}</p>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="text-sm font-medium text-foreground/80">Tên công ty *</label>
+                  <label className="text-sm font-medium text-foreground/80">{t('business.companyName')}</label>
                   <Input
                     required
-                    placeholder="Nhập tên công ty"
+                    placeholder={t('business.companyName')}
                     value={formData.companyName}
                     onChange={(e) => handleInputChange('companyName', e.target.value)}
                   />
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-foreground/80">Loại hình kinh doanh *</label>
+                  <label className="text-sm font-medium text-foreground/80">{t('business.businessType')}</label>
                   <Select onValueChange={(value) => handleInputChange('businessType', value)}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Chọn loại hình" />
+                      <SelectValue placeholder={t('business.selectType')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="producer">Nhà sản xuất</SelectItem>
-                      <SelectItem value="supplier">Nhà cung cấp</SelectItem>
-                      <SelectItem value="exporter">Nhà xuất khẩu</SelectItem>
-                      <SelectItem value="processor">Nhà chế biến</SelectItem>
-                      <SelectItem value="distributor">Nhà phân phối</SelectItem>
+                      <SelectItem value="producer">{t('business.producer')}</SelectItem>
+                      <SelectItem value="supplier">{t('business.supplier')}</SelectItem>
+                      <SelectItem value="exporter">{t('business.exporter')}</SelectItem>
+                      <SelectItem value="processor">{t('business.processor')}</SelectItem>
+                      <SelectItem value="distributor">{t('business.distributor')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-foreground/80">Người liên hệ *</label>
+                    <label className="text-sm font-medium text-foreground/80">{t('business.contactPerson')}</label>
                     <Input
                       required
-                      placeholder="Họ và tên"
+                      placeholder={t('auth.name')}
                       value={formData.contactPerson}
                       onChange={(e) => handleInputChange('contactPerson', e.target.value)}
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground/80">Số điện thoại *</label>
+                    <label className="text-sm font-medium text-foreground/80">{t('business.phone')}</label>
                     <Input
                       required
                       type="tel"
-                      placeholder="Số điện thoại"
+                      placeholder={t('auth.phone')}
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
                     />
@@ -197,39 +187,40 @@ const Business = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-foreground/80">Email *</label>
+                  <label className="text-sm font-medium text-foreground/80">{t('business.email')}</label>
                   <Input
                     type="email"
                     required
-                    placeholder="Nhập địa chỉ email"
+                    placeholder={t('auth.email')}
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                   />
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-foreground/80">Địa chỉ công ty *</label>
+                  <label className="text-sm font-medium text-foreground/80">{t('business.address')}</label>
                   <Input
                     required
-                    placeholder="Địa chỉ đầy đủ"
+                    placeholder={t('business.address')}
                     value={formData.address}
                     onChange={(e) => handleInputChange('address', e.target.value)}
                   />
                 </div>
 
+                
                 <div>
-                  <label className="text-sm font-medium text-foreground/80">Sản phẩm chính</label>
+                  <label className="text-sm font-medium text-foreground/80">{t('business.products')}</label>
                   <Input
-                    placeholder="Mô tả các sản phẩm chính"
+                    placeholder={t('business.products')}
                     value={formData.products}
                     onChange={(e) => handleInputChange('products', e.target.value)}
                   />
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-foreground/80">Mô tả doanh nghiệp</label>
+                  <label className="text-sm font-medium text-foreground/80">{t('business.description')}</label>
                   <Textarea
-                    placeholder="Giới thiệu về công ty và hoạt động kinh doanh..."
+                    placeholder={t('business.description')}
                     className="min-h-[100px]"
                     value={formData.description}
                     onChange={(e) => handleInputChange('description', e.target.value)}
@@ -238,7 +229,7 @@ const Business = () => {
 
                 <Button type="submit" className="w-full">
                   <Building className="w-4 h-4 mr-2" />
-                  Đăng Ký Doanh Nghiệp
+                  {t('business.submit')}
                 </Button>
               </form>
             </CardContent>
@@ -248,15 +239,15 @@ const Business = () => {
         {/* Contact Section */}
         <section className="mt-16 bg-muted rounded-lg p-8">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-primary mb-4">Cần hỗ trợ thêm?</h2>
-            <p className="text-foreground/70">Liên hệ trực tiếp với đội ngũ hỗ trợ doanh nghiệp</p>
+            <h2 className="text-2xl font-bold text-primary mb-4">{t('business.needHelp')}</h2>
+            <p className="text-foreground/70">{t('business.contactSupport')}</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-6">
             <Card className="border-0 shadow-elegant text-center">
               <CardContent className="p-6">
                 <Phone className="w-8 h-8 text-primary mx-auto mb-4" />
-                <h3 className="font-semibold mb-2">Hotline</h3>
+                <h3 className="font-semibold mb-2">{t('business.contactHotline')}</h3>
                 <p className="text-foreground/70">1900-1234 (ext. 2)</p>
                 <p className="text-sm text-foreground/50">8:00 - 17:00, Thứ 2 - Thứ 6</p>
               </CardContent>
@@ -265,7 +256,7 @@ const Business = () => {
             <Card className="border-0 shadow-elegant text-center">
               <CardContent className="p-6">
                 <Mail className="w-8 h-8 text-primary mx-auto mb-4" />
-                <h3 className="font-semibold mb-2">Email</h3>
+                <h3 className="font-semibold mb-2">{t('business.contactEmail')}</h3>
                 <p className="text-foreground/70">business@efarmvn.com</p>
                 <p className="text-sm text-foreground/50">Phản hồi trong 24h</p>
               </CardContent>
@@ -274,7 +265,7 @@ const Business = () => {
             <Card className="border-0 shadow-elegant text-center">
               <CardContent className="p-6">
                 <MapPin className="w-8 h-8 text-primary mx-auto mb-4" />
-                <h3 className="font-semibold mb-2">Văn phòng</h3>
+                <h3 className="font-semibold mb-2">{t('business.contactOffice')}</h3>
                 <p className="text-foreground/70">123 Nguyễn Huệ, Q.1</p>
                 <p className="text-sm text-foreground/50">TP. Hồ Chí Minh</p>
               </CardContent>

@@ -5,8 +5,10 @@ import { Ship, Plane, Truck, Package, FileText, Globe, DollarSign, Clock, Home, 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTranslation } from "react-i18next";
 
 const ExportServices = () => {
+  const { t } = useTranslation();
   const shippingMethods = [
     {
       icon: Ship,
@@ -180,34 +182,30 @@ const ExportServices = () => {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-4xl font-bold text-foreground mb-2">Dịch Vụ Xuất Khẩu</h1>
-              <p className="text-muted-foreground">
-                Giải pháp xuất khẩu nông sản toàn diện từ A đến Z
-              </p>
+              <h1 className="text-4xl font-bold text-foreground mb-2">{t('export.heroTitle')}</h1>
+              <p className="text-muted-foreground">{t('export.heroDesc')}</p>
             </div>
             <Button variant="outline" onClick={() => window.location.href = '/'}>
               <Home className="h-4 w-4 mr-2" />
-              Trang chủ
+              {t('common.backHome')}
             </Button>
           </div>
         </div>
 
         <Tabs defaultValue="shipping" className="w-full">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="shipping">Phương thức vận chuyển</TabsTrigger>
-            <TabsTrigger value="markets">Thị trường xuất khẩu</TabsTrigger>
-            <TabsTrigger value="partners">Đối tác vận chuyển</TabsTrigger>
-            <TabsTrigger value="services">Dịch vụ bên thứ 3</TabsTrigger>
+            <TabsTrigger value="shipping">{t('export.tabShipping')}</TabsTrigger>
+            <TabsTrigger value="markets">{t('export.tabMarkets')}</TabsTrigger>
+            <TabsTrigger value="partners">{t('export.tabPartners')}</TabsTrigger>
+            <TabsTrigger value="services">{t('export.tabServices')}</TabsTrigger>
           </TabsList>
 
           {/* Shipping Methods */}
           <TabsContent value="shipping" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Các Phương Thức Vận Chuyển Hàng Hải</CardTitle>
-                <CardDescription>
-                  Chi phí và thời gian tham khảo cho xuất khẩu nông sản
-                </CardDescription>
+                <CardTitle>{t('export.shippingTitle')}</CardTitle>
+                <CardDescription>{t('export.shippingDesc')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -231,26 +229,26 @@ const ExportServices = () => {
                             <div>
                               <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                                 <Clock className="h-4 w-4" />
-                                Thời gian
+                                {t('export.labelTime')}
                               </div>
                               <p className="font-semibold">{method.duration}</p>
                             </div>
                             <div>
                               <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                                 <DollarSign className="h-4 w-4" />
-                                Chi phí
+                                {t('export.labelCost')}
                               </div>
                               <p className="font-semibold">{method.cost}</p>
                             </div>
                           </div>
                           
                           <div>
-                            <p className="text-sm font-medium mb-2">Phù hợp với:</p>
+                            <p className="text-sm font-medium mb-2">{t('export.labelSuitable')}</p>
                             <p className="text-sm text-muted-foreground">{method.suitable}</p>
                           </div>
 
                           <div>
-                            <p className="text-sm font-medium mb-2">Ưu điểm:</p>
+                            <p className="text-sm font-medium mb-2">{t('export.labelAdvantages')}</p>
                             <ul className="space-y-1">
                               {method.advantages.map((adv, i) => (
                                 <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
@@ -269,24 +267,24 @@ const ExportServices = () => {
                 {/* Additional costs */}
                 <Card className="mt-6 bg-muted/50">
                   <CardHeader>
-                    <CardTitle className="text-base">Chi Phí Phát Sinh Khác</CardTitle>
+                    <CardTitle className="text-base">{t('export.extraCostsTitle')}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
                       <div>
-                        <p className="font-medium mb-1">Phí hải quan</p>
+                        <p className="font-medium mb-1">{t('export.extraCustoms')}</p>
                         <p className="text-muted-foreground">1-3% giá trị hàng</p>
                       </div>
                       <div>
-                        <p className="font-medium mb-1">Phí bảo hiểm</p>
+                        <p className="font-medium mb-1">{t('export.extraInsurance')}</p>
                         <p className="text-muted-foreground">0.5-1% giá trị hàng</p>
                       </div>
                       <div>
-                        <p className="font-medium mb-1">Phí chứng từ</p>
+                        <p className="font-medium mb-1">{t('export.extraDocumentation')}</p>
                         <p className="text-muted-foreground">$100-300</p>
                       </div>
                       <div>
-                        <p className="font-medium mb-1">Phí kiểm dịch</p>
+                        <p className="font-medium mb-1">{t('export.extraPhytosanitary')}</p>
                         <p className="text-muted-foreground">$50-200</p>
                       </div>
                     </div>
@@ -300,9 +298,9 @@ const ExportServices = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <FileText className="h-5 w-5" />
-                  Chứng Từ Xuất Khẩu
+                  {t('export.documentsTitle')}
                 </CardTitle>
-                <CardDescription>Danh sách chứng từ cần thiết</CardDescription>
+                <CardDescription>{t('export.documentsDesc')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -313,9 +311,9 @@ const ExportServices = () => {
                         <p className="text-sm font-medium">{doc.name}</p>
                       </div>
                       {doc.required ? (
-                        <Badge variant="destructive" className="text-xs">Bắt buộc</Badge>
+                        <Badge variant="destructive" className="text-xs">{t('export.required')}</Badge>
                       ) : (
-                        <Badge variant="secondary" className="text-xs">Tùy chọn</Badge>
+                        <Badge variant="secondary" className="text-xs">{t('export.optional')}</Badge>
                       )}
                     </div>
                   ))}
@@ -330,11 +328,9 @@ const ExportServices = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Globe className="h-5 w-5" />
-                  Thị Trường Xuất Khẩu Tiềm Năng
+                  {t('export.marketsTitle')}
                 </CardTitle>
-                <CardDescription>
-                  Các quốc gia nhập khẩu nông sản Việt Nam lớn nhất
-                </CardDescription>
+                <CardDescription>{t('export.marketsDesc')}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 {exportCountries.map((region, idx) => (
@@ -355,7 +351,7 @@ const ExportServices = () => {
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              <span className="font-medium">Sản phẩm:</span> {country.products}
+                              <span className="font-medium">{t('export.labelProducts')}</span> {country.products}
                             </p>
                           </CardContent>
                         </Card>
@@ -373,11 +369,9 @@ const ExportServices = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Anchor className="h-5 w-5" />
-                  Hãng Tàu & Công Ty Logistics
+                  {t('export.partnersTitle')}
                 </CardTitle>
-                <CardDescription>
-                  Các đối tác vận chuyển uy tín
-                </CardDescription>
+                <CardDescription>{t('export.partnersDesc')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -397,14 +391,14 @@ const ExportServices = () => {
                       </CardHeader>
                       <CardContent className="space-y-3">
                         <div>
-                          <p className="text-sm text-muted-foreground mb-1">Tuyến đường</p>
+                          <p className="text-sm text-muted-foreground mb-1">Routes</p>
                           <p className="text-sm font-medium">{company.routes}</p>
                         </div>
                         <div>
                           <p className="text-sm text-muted-foreground mb-1">Website</p>
                           <p className="text-sm font-medium text-primary">{company.contact}</p>
                         </div>
-                        <Button className="w-full" size="sm">Yêu cầu báo giá</Button>
+                        <Button className="w-full" size="sm">{t('export.requestQuote')}</Button>
                       </CardContent>
                     </Card>
                   ))}
@@ -417,10 +411,8 @@ const ExportServices = () => {
           <TabsContent value="services" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Dịch Vụ Xuất Khẩu Trọn Gói</CardTitle>
-                <CardDescription>
-                  Các công ty chuyên cung cấp dịch vụ xuất khẩu từ A-Z
-                </CardDescription>
+                <CardTitle>{t('export.servicesTitle')}</CardTitle>
+                <CardDescription>{t('export.servicesDesc')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -434,7 +426,7 @@ const ExportServices = () => {
                       </CardHeader>
                       <CardContent className="space-y-4">
                         <div>
-                          <p className="text-sm font-medium mb-2">Dịch vụ:</p>
+                          <p className="text-sm font-medium mb-2">{t('export.servicesLabel')}</p>
                           <div className="flex flex-wrap gap-2">
                             {service.services.map((s, i) => (
                               <Badge key={i} variant="outline" className="text-xs">{s}</Badge>
@@ -453,7 +445,7 @@ const ExportServices = () => {
                           </div>
                         </div>
 
-                        <Button className="w-full">Liên hệ tư vấn</Button>
+                        <Button className="w-full">{t('export.contactConsult')}</Button>
                       </CardContent>
                     </Card>
                   ))}
@@ -464,15 +456,13 @@ const ExportServices = () => {
             {/* Process */}
             <Card className="bg-gradient-primary">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-primary-foreground mb-6 text-center">
-                  Quy Trình Xuất Khẩu Với eFarmVn
-                </h3>
+                <h3 className="text-2xl font-bold text-primary-foreground mb-6 text-center">{t('export.processTitle')}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                   {[
-                    { step: "1", title: "Tư vấn", desc: "Phân tích thị trường & sản phẩm" },
-                    { step: "2", title: "Chuẩn bị", desc: "Chứng từ & logistics" },
-                    { step: "3", title: "Vận chuyển", desc: "Theo dõi hành trình" },
-                    { step: "4", title: "Hoàn tất", desc: "Thanh toán & hỗ trợ" }
+                    { step: "1", title: t('export.step1'), desc: t('export.step1Desc') },
+                    { step: "2", title: t('export.step2'), desc: t('export.step2Desc') },
+                    { step: "3", title: t('export.step3'), desc: t('export.step3Desc') },
+                    { step: "4", title: t('export.step4'), desc: t('export.step4Desc') }
                   ].map((item, idx) => (
                     <div key={idx} className="text-center">
                       <div className="w-12 h-12 bg-white text-primary rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-3">
@@ -484,9 +474,7 @@ const ExportServices = () => {
                   ))}
                 </div>
                 <div className="text-center mt-8">
-                  <Button size="lg" className="bg-white text-primary hover:bg-white/90">
-                    Đăng ký tư vấn miễn phí
-                  </Button>
+                  <Button size="lg" className="bg-white text-primary hover:bg-white/90">{t('export.freeConsultation')}</Button>
                 </div>
               </CardContent>
             </Card>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search, Globe, Phone, ShoppingCart, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,10 +10,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.png";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
-  const [language, setLanguage] = useState("VI");
+  const { t, i18n } = useTranslation();
+  const [language, setLanguage] = useState<string>(
+    (localStorage.getItem("i18nextLng") || "vi").toUpperCase()
+  );
   const [cartItems] = useState(3);
+
+  useEffect(() => {
+    const current = i18n.language || "vi";
+    setLanguage(current.toUpperCase());
+  }, [i18n.language]);
+
+  const changeLanguage = (lng: "vi" | "en" | "zh") => {
+    i18n.changeLanguage(lng);
+    setLanguage(lng.toUpperCase());
+  };
 
   return (
     <header className="bg-background border-b border-border shadow-soft">
@@ -23,9 +37,9 @@ const Header = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4" />
-              <span>Hotline: 1900-1234</span>
+              <span>{t("common.hotline")}: 1900-1234</span>
             </div>
-            <span>Hỗ trợ 24/7</span>
+            <span>{t("common.support247")}</span>
           </div>
           
           <div className="flex items-center gap-4">
@@ -37,9 +51,9 @@ const Header = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => setLanguage("VI")}>Tiếng Việt</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("EN")}>English</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("CN")}>中文</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => changeLanguage("vi")}>Tiếng Việt</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => changeLanguage("en")}>English</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => changeLanguage("zh")}>中文</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -54,7 +68,7 @@ const Header = () => {
             <img src={logo} alt="eFarmVn" className="h-12 w-12" />
             <div>
               <h1 className="text-2xl font-bold text-primary">eFarmVn</h1>
-              <p className="text-xs text-muted-foreground">Nông sản Việt chất lượng cao</p>
+              <p className="text-xs text-muted-foreground">{t("header.slogan")}</p>
             </div>
           </div>
 
@@ -63,11 +77,11 @@ const Header = () => {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
               <Input
-                placeholder="Tìm kiếm trà, hạt điều, sầu riêng..."
+                placeholder={t("header.placeholder")}
                 className="pl-10 pr-4 py-3 text-base border-border focus:ring-primary"
               />
               <Button className="absolute right-1 top-1/2 transform -translate-y-1/2 px-6">
-                Tìm kiếm
+                {t("common.search")}
               </Button>
             </div>
           </div>
@@ -76,11 +90,11 @@ const Header = () => {
           <div className="flex items-center gap-4">
             <Button variant="outline" className="hidden md:flex" onClick={() => window.location.href = '/auth'}>
               <User className="h-4 w-4 mr-2" />
-              Đăng nhập
+              {t("header.login")}
             </Button>
             
             <Button variant="secondary" className="hidden md:flex" onClick={() => window.location.href = '/business'}>
-              Doanh nghiệp
+              {t("header.business")}
             </Button>
 
             <Button variant="ghost" className="relative">
@@ -103,14 +117,14 @@ const Header = () => {
       <nav className="bg-secondary border-t border-border">
         <div className="container mx-auto px-4">
           <ul className="flex items-center space-x-8 py-3 text-sm font-medium">
-            <li><a href="/" className="text-secondary-foreground hover:text-primary transition-colors">Trang chủ</a></li>
-            <li><a href="/products" className="text-secondary-foreground hover:text-primary transition-colors">Sản phẩm</a></li>
-            <li><a href="/auction" className="text-secondary-foreground hover:text-accent transition-colors">Đấu giá</a></li>
-            <li><a href="/suppliers" className="text-secondary-foreground hover:text-primary transition-colors">Nhà cung cấp</a></li>
-            <li><a href="/services" className="text-secondary-foreground hover:text-primary transition-colors">Dịch vụ xuất khẩu</a></li>
-            <li><a href="/market" className="text-secondary-foreground hover:text-primary transition-colors">Báo giá thị trường</a></li>
-            <li><a href="/contact" className="text-secondary-foreground hover:text-primary transition-colors">Liên hệ</a></li>
-            <li><a href="/checkout" className="text-secondary-foreground hover:text-primary transition-colors">Thanh toán</a></li>
+            <li><a href="/" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.home")}</a></li>
+            <li><a href="/products" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.products")}</a></li>
+            <li><a href="/auction" className="text-secondary-foreground hover:text-accent transition-colors">{t("header.auction")}</a></li>
+            <li><a href="/suppliers" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.suppliers")}</a></li>
+            <li><a href="/services" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.exportServices")}</a></li>
+            <li><a href="/market" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.marketPrices")}</a></li>
+            <li><a href="/contact" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.contact")}</a></li>
+            <li><a href="/checkout" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.checkout")}</a></li>
           </ul>
         </div>
       </nav>

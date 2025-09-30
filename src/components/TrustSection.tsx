@@ -1,46 +1,48 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Shield, Award, Truck, Users, Globe, CheckCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const TrustSection = () => {
+  const { t } = useTranslation();
   const features = [
     {
       icon: Shield,
-      title: "Chứng nhận chất lượng",
-      description: "100% sản phẩm được kiểm định và chứng nhận bởi các tổ chức uy tín",
-      stats: "500+ chứng chỉ",
+      title: t("trust.featureQualityTitle", { defaultValue: "Chứng nhận chất lượng" }),
+      description: t("trust.featureQualityDesc", { defaultValue: "100% sản phẩm được kiểm định và chứng nhận bởi các tổ chức uy tín" }),
+      stats: t("trust.featureQualityStats", { defaultValue: "500+ chứng chỉ" }),
       color: "text-primary"
     },
     {
       icon: Award,
-      title: "Nhà cung cấp uy tín",
-      description: "Đối tác với các HTX và doanh nghiệp có uy tín hàng đầu",
-      stats: "1,000+ đối tác",
+      title: t("trust.featureSuppliersTitle", { defaultValue: "Nhà cung cấp uy tín" }),
+      description: t("trust.featureSuppliersDesc", { defaultValue: "Đối tác với các HTX và doanh nghiệp có uy tín hàng đầu" }),
+      stats: t("trust.featureSuppliersStats", { defaultValue: "1,000+ đối tác" }),
       color: "text-accent"
     },
     {
       icon: Truck,
-      title: "Logistics chuyên nghiệp",
-      description: "Hệ thống vận chuyển và bảo quản chuyên dụng cho nông sản",
-      stats: "63/63 tỉnh thành",
+      title: t("trust.featureLogisticsTitle", { defaultValue: "Logistics chuyên nghiệp" }),
+      description: t("trust.featureLogisticsDesc", { defaultValue: "Hệ thống vận chuyển và bảo quản chuyên dụng cho nông sản" }),
+      stats: t("trust.featureLogisticsStats", { defaultValue: "63/63 tỉnh thành" }),
       color: "text-success"
     },
     {
       icon: Globe,
-      title: "Xuất khẩu quốc tế",
-      description: "Hỗ trợ thủ tục và quy trình xuất khẩu đến 50+ quốc gia",
-      stats: "50+ quốc gia",
+      title: t("trust.featureExportTitle", { defaultValue: "Xuất khẩu quốc tế" }),
+      description: t("trust.featureExportDesc", { defaultValue: "Hỗ trợ thủ tục và quy trình xuất khẩu đến 50+ quốc gia" }),
+      stats: t("trust.featureExportStats", { defaultValue: "50+ quốc gia" }),
       color: "text-tea"
     }
   ];
 
   const certifications = [
-    { name: "GlobalGAP", desc: "Thực hành nông nghiệp tốt toàn cầu" },
-    { name: "HACCP", desc: "Phân tích mối nguy và điểm kiểm soát quan trọng" },
-    { name: "ISO 22000", desc: "Hệ thống quản lý an toàn thực phẩm" },
-    { name: "Organic", desc: "Chứng nhận hữu cơ quốc tế" },
-    { name: "VietGAP", desc: "Thực hành nông nghiệp tốt Việt Nam" },
-    { name: "Rainforest Alliance", desc: "Nông nghiệp bền vững" }
+    { name: "GlobalGAP", desc: t("trust.certDesc.globalgap") },
+    { name: "HACCP", desc: t("trust.certDesc.haccp") },
+    { name: "ISO 22000", desc: t("trust.certDesc.iso22000") },
+    { name: "Organic", desc: t("trust.certDesc.organic") },
+    { name: "VietGAP", desc: t("trust.certDesc.vietgap") },
+    { name: "Rainforest Alliance", desc: t("trust.certDesc.rainforest") }
   ];
 
   const partners = [
@@ -58,14 +60,13 @@ const TrustSection = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
-            Tin cậy & Uy tín
+            {t("trust.badge")}
           </Badge>
           <h2 className="text-3xl font-bold text-foreground mb-4">
-            Tại sao chọn eFarmVn?
+            {t("trust.whyChoose")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Chúng tôi cam kết mang đến nền tảng giao dịch an toàn, minh bạch 
-            và chuyên nghiệp nhất cho ngành nông sản Việt Nam
+            {t("trust.whyDesc")}
           </p>
         </div>
 
@@ -98,7 +99,7 @@ const TrustSection = () => {
           <div>
             <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
               <Award className="h-6 w-6 text-accent" />
-              Chứng nhận & Tiêu chuẩn
+              {t("trust.certsTitle")}
             </h3>
             <div className="grid sm:grid-cols-2 gap-4">
               {certifications.map((cert, index) => (
@@ -117,7 +118,7 @@ const TrustSection = () => {
           <div>
             <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
               <Users className="h-6 w-6 text-primary" />
-              Đối tác chiến lược
+              {t("trust.partnersTitle")}
             </h3>
             <div className="space-y-4">
               {partners.map((partner, index) => (
@@ -140,17 +141,17 @@ const TrustSection = () => {
         <div className="mt-16 text-center">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-border/50 shadow-organic">
             <h3 className="text-2xl font-bold text-foreground mb-4">
-              Sẵn sàng bắt đầu giao dịch?
+              {t("trust.ctaTitle")}
             </h3>
             <p className="text-muted-foreground mb-6">
-              Tham gia cộng đồng hơn 10,000 người mua và bán nông sản uy tín
+              {t("trust.ctaDesc")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="px-8 py-3 bg-gradient-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary-hover transition-colors">
-                Đăng ký ngay
+                {t("trust.ctaPrimary")}
               </button>
               <button className="px-8 py-3 border border-border text-foreground rounded-lg font-semibold hover:bg-muted transition-colors">
-                Tìm hiểu thêm
+                {t("trust.ctaSecondary")}
               </button>
             </div>
           </div>

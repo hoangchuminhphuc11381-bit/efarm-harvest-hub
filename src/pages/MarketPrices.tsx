@@ -5,8 +5,10 @@ import { TrendingUp, TrendingDown, Minus, Home, MapPin, Calendar } from "lucide-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTranslation } from "react-i18next";
 
 const MarketPrices = () => {
+  const { t, i18n } = useTranslation();
   const marketData = [
     {
       product: "Cà phê Robusta",
@@ -239,15 +241,15 @@ const MarketPrices = () => {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-4xl font-bold text-foreground mb-2">Báo Giá Thị Trường</h1>
+              <h1 className="text-4xl font-bold text-foreground mb-2">{t('market.heroTitle')}</h1>
               <p className="text-muted-foreground flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
-                Cập nhật lúc: {new Date().toLocaleString('vi-VN')}
+                {t('market.updatedAt')} {new Date().toLocaleString(i18n.language === 'vi' ? 'vi-VN' : i18n.language === 'zh' ? 'zh-CN' : 'en-US')}
               </p>
             </div>
             <Button variant="outline" onClick={() => window.location.href = '/'}>
               <Home className="h-4 w-4 mr-2" />
-              Trang chủ
+              {t('common.backHome')}
             </Button>
           </div>
         </div>
@@ -282,33 +284,31 @@ const MarketPrices = () => {
 
         <Tabs defaultValue="prices" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="prices">Bảng Giá</TabsTrigger>
-            <TabsTrigger value="north">Xu Hướng Miền Bắc</TabsTrigger>
-            <TabsTrigger value="south">Xu Hướng Miền Nam</TabsTrigger>
+            <TabsTrigger value="prices">{t('market.tabPrices')}</TabsTrigger>
+            <TabsTrigger value="north">{t('market.tabNorth')}</TabsTrigger>
+            <TabsTrigger value="south">{t('market.tabSouth')}</TabsTrigger>
           </TabsList>
 
           {/* Price Table */}
           <TabsContent value="prices">
             <Card>
               <CardHeader>
-                <CardTitle>Giá Nông Sản Hôm Nay</CardTitle>
-                <CardDescription>
-                  Giá tham khảo tại các chợ đầu mối và vùng nguyên liệu
-                </CardDescription>
+                <CardTitle>{t('market.tabPrices')}</CardTitle>
+                <CardDescription>{t('market.legend.note')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
                       <tr className="border-b bg-muted/50">
-                        <th className="text-left p-3 font-semibold">Sản phẩm</th>
-                        <th className="text-left p-3 font-semibold">Vùng</th>
-                        <th className="text-right p-3 font-semibold">Giá hiện tại</th>
-                        <th className="text-right p-3 font-semibold">Cao nhất</th>
-                        <th className="text-right p-3 font-semibold">Thấp nhất</th>
-                        <th className="text-right p-3 font-semibold">Khối lượng</th>
-                        <th className="text-center p-3 font-semibold">Biến động</th>
-                        <th className="text-center p-3 font-semibold">Dự báo</th>
+                        <th className="text-left p-3 font-semibold">{t('market.table.product')}</th>
+                        <th className="text-left p-3 font-semibold">{t('market.table.region')}</th>
+                        <th className="text-right p-3 font-semibold">{t('market.table.currentPrice')}</th>
+                        <th className="text-right p-3 font-semibold">{t('market.table.highest')}</th>
+                        <th className="text-right p-3 font-semibold">{t('market.table.lowest')}</th>
+                        <th className="text-right p-3 font-semibold">{t('market.table.volume')}</th>
+                        <th className="text-center p-3 font-semibold">{t('market.table.change')}</th>
+                        <th className="text-center p-3 font-semibold">{t('market.table.forecast')}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -326,14 +326,14 @@ const MarketPrices = () => {
                           </td>
                           <td className="p-3 text-right">
                             <div className="font-bold text-lg">
-                              {item.currentPrice.toLocaleString('vi-VN')}
+                              {item.currentPrice.toLocaleString(i18n.language === 'vi' ? 'vi-VN' : i18n.language === 'zh' ? 'zh-CN' : 'en-US')}
                             </div>
                           </td>
                           <td className="p-3 text-right text-sm text-green-600">
-                            {item.high.toLocaleString('vi-VN')}
+                            {item.high.toLocaleString(i18n.language === 'vi' ? 'vi-VN' : i18n.language === 'zh' ? 'zh-CN' : 'en-US')}
                           </td>
                           <td className="p-3 text-right text-sm text-red-600">
-                            {item.low.toLocaleString('vi-VN')}
+                            {item.low.toLocaleString(i18n.language === 'vi' ? 'vi-VN' : i18n.language === 'zh' ? 'zh-CN' : 'en-US')}
                           </td>
                           <td className="p-3 text-right text-sm">
                             {item.volume}
@@ -361,18 +361,18 @@ const MarketPrices = () => {
                 <div className="flex flex-wrap items-center gap-6 text-sm">
                   <div className="flex items-center gap-2">
                     <TrendingUp className="h-4 w-4 text-green-600" />
-                    <span>Tăng giá</span>
+                    <span>{t('market.legend.up')}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <TrendingDown className="h-4 w-4 text-red-600" />
-                    <span>Giảm giá</span>
+                    <span>{t('market.legend.down')}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Minus className="h-4 w-4 text-gray-600" />
-                    <span>Ổn định</span>
+                    <span>{t('market.legend.stable')}</span>
                   </div>
                   <div className="text-muted-foreground ml-auto">
-                    * Giá cập nhật từ các chợ đầu mối và nhà thu mua lớn
+                    {t('market.legend.note')}
                   </div>
                 </div>
               </CardContent>
@@ -383,10 +383,8 @@ const MarketPrices = () => {
           <TabsContent value="north">
             <Card>
               <CardHeader>
-                <CardTitle>Xu Hướng Thị Trường Miền Bắc</CardTitle>
-                <CardDescription>
-                  Phân tích các vùng sản xuất nông sản trọng điểm Miền Bắc
-                </CardDescription>
+                <CardTitle>{t('market.northTitle')}</CardTitle>
+                <CardDescription>{t('market.northDesc')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -403,7 +401,7 @@ const MarketPrices = () => {
                               {region.famousProduct}
                             </CardDescription>
                           </div>
-                          {region.trend.includes("Tăng") ? (
+                          {region.trend.toLowerCase().includes("tăng") ? (
                             <Badge className="bg-green-100 text-green-700">
                               <TrendingUp className="h-3 w-3 mr-1" />
                               {region.trend}
@@ -416,11 +414,11 @@ const MarketPrices = () => {
                       <CardContent>
                         <div className="grid grid-cols-2 gap-4 text-sm">
                           <div>
-                            <p className="text-muted-foreground mb-1">Mùa vụ</p>
+                            <p className="text-muted-foreground mb-1">{t('market.season')}</p>
                             <p className="font-medium">{region.season}</p>
                           </div>
                           <div>
-                            <p className="text-muted-foreground mb-1">Diện tích canh tác</p>
+                            <p className="text-muted-foreground mb-1">{t('market.area')}</p>
                             <p className="font-medium">{region.area}</p>
                           </div>
                         </div>
@@ -436,10 +434,8 @@ const MarketPrices = () => {
           <TabsContent value="south">
             <Card>
               <CardHeader>
-                <CardTitle>Xu Hướng Thị Trường Miền Nam</CardTitle>
-                <CardDescription>
-                  Phân tích các vùng sản xuất nông sản trọng điểm Miền Nam
-                </CardDescription>
+                <CardTitle>{t('market.southTitle')}</CardTitle>
+                <CardDescription>{t('market.southDesc')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -456,12 +452,12 @@ const MarketPrices = () => {
                               {region.famousProduct}
                             </CardDescription>
                           </div>
-                          {region.trend.includes("Tăng") ? (
+                          {region.trend.toLowerCase().includes("tăng") ? (
                             <Badge className="bg-green-100 text-green-700">
                               <TrendingUp className="h-3 w-3 mr-1" />
                               {region.trend}
                             </Badge>
-                          ) : region.trend.includes("Giảm") ? (
+                          ) : region.trend.toLowerCase().includes("giảm") ? (
                             <Badge className="bg-red-100 text-red-700">
                               <TrendingDown className="h-3 w-3 mr-1" />
                               {region.trend}
@@ -474,11 +470,11 @@ const MarketPrices = () => {
                       <CardContent>
                         <div className="grid grid-cols-2 gap-4 text-sm">
                           <div>
-                            <p className="text-muted-foreground mb-1">Mùa vụ</p>
+                            <p className="text-muted-foreground mb-1">{t('market.season')}</p>
                             <p className="font-medium">{region.season}</p>
                           </div>
                           <div>
-                            <p className="text-muted-foreground mb-1">Diện tích canh tác</p>
+                            <p className="text-muted-foreground mb-1">{t('market.area')}</p>
                             <p className="font-medium">{region.area}</p>
                           </div>
                         </div>
@@ -492,17 +488,11 @@ const MarketPrices = () => {
         </Tabs>
 
         {/* Newsletter CTA */}
-        <Card className="mt-8 bg-gradient-primary">
+          <Card className="mt-8 bg-gradient-primary">
           <CardContent className="p-8 text-center">
-            <h3 className="text-2xl font-bold text-primary-foreground mb-4">
-              Nhận Báo Giá Thị Trường Hàng Ngày
-            </h3>
-            <p className="text-primary-foreground/90 mb-6">
-              Đăng ký để nhận thông tin giá cả, xu hướng và phân tích thị trường mới nhất
-            </p>
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90">
-              Đăng ký nhận tin
-            </Button>
+              <h3 className="text-2xl font-bold text-primary-foreground mb-4">{t('market.newsletterTitle')}</h3>
+              <p className="text-primary-foreground/90 mb-6">{t('market.newsletterDesc')}</p>
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90">{t('market.subscribe')}</Button>
           </CardContent>
         </Card>
       </main>
