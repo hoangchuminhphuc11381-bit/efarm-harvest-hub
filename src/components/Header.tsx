@@ -74,12 +74,12 @@ const Header = () => {
 
           {/* User actions */}
           <div className="flex items-center gap-4">
-            <Button variant="outline" className="hidden md:flex">
+            <Button variant="outline" className="hidden md:flex" onClick={() => window.location.href = '/auth'}>
               <User className="h-4 w-4 mr-2" />
               Đăng nhập
             </Button>
             
-            <Button variant="secondary" className="hidden md:flex">
+            <Button variant="secondary" className="hidden md:flex" onClick={() => window.location.href = '/business'}>
               Doanh nghiệp
             </Button>
 
@@ -109,7 +109,7 @@ const Header = () => {
             <li><a href="/suppliers" className="text-secondary-foreground hover:text-primary transition-colors">Nhà cung cấp</a></li>
             <li><a href="/services" className="text-secondary-foreground hover:text-primary transition-colors">Dịch vụ xuất khẩu</a></li>
             <li><a href="/market" className="text-secondary-foreground hover:text-primary transition-colors">Báo giá thị trường</a></li>
-            <li><a href="/about" className="text-secondary-foreground hover:text-primary transition-colors">Về chúng tôi</a></li>
+            <li><a href="/contact" className="text-secondary-foreground hover:text-primary transition-colors">Liên hệ</a></li>
           </ul>
         </div>
       </nav>

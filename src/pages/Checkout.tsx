@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { ShoppingBag, CreditCard, Truck, MapPin, Phone, User, Wallet, Receipt } from 'lucide-react';
+import { ShoppingBag, CreditCard, Truck, MapPin, Phone, User, Wallet, Receipt, ArrowLeft } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Checkout = () => {
@@ -79,8 +79,19 @@ const Checkout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle py-8">
-      <div className="container mx-auto px-6">
+    <div className="min-h-screen bg-gradient-subtle">
+      {/* Header */}
+      <div className="bg-background border-b border-border p-4">
+        <div className="container mx-auto flex items-center gap-4">
+          <Button variant="ghost" onClick={() => window.location.href = '/'}>
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Trang chủ
+          </Button>
+          <h1 className="text-xl font-semibold">Thanh toán</h1>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 py-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-primary mb-2">Thanh Toán</h1>

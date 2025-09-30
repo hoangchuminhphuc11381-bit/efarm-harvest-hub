@@ -87,7 +87,7 @@ const FeaturedProducts = () => {
               Những sản phẩm chất lượng cao được đánh giá tốt nhất
             </p>
           </div>
-          <Button variant="outline" className="hidden md:flex">
+          <Button variant="outline" className="hidden md:flex" onClick={() => window.location.href = '/products'}>
             Xem tất cả sản phẩm
           </Button>
         </div>
@@ -188,15 +188,15 @@ const FeaturedProducts = () => {
                 {/* Actions */}
                 <div className="space-y-2">
                   {product.isAuction ? (
-                    <Button className="w-full bg-gradient-harvest hover:bg-accent">
+                    <Button className="w-full bg-gradient-harvest hover:bg-accent" onClick={() => window.location.href = '/auction'}>
                       Tham gia đấu giá
                     </Button>
                   ) : (
-                    <Button className="w-full bg-gradient-primary hover:bg-primary-hover">
+                    <Button className="w-full bg-gradient-primary hover:bg-primary-hover" onClick={() => window.location.href = '/checkout'}>
                       Yêu cầu báo giá
                     </Button>
                   )}
-                  <Button variant="outline" className="w-full" size="sm">
+                  <Button variant="outline" className="w-full" size="sm" onClick={() => window.location.href = '/products'}>
                     Xem chi tiết
                   </Button>
                 </div>
@@ -207,7 +207,7 @@ const FeaturedProducts = () => {
 
         {/* Mobile view all button */}
         <div className="mt-8 text-center md:hidden">
-          <Button className="bg-gradient-primary hover:bg-primary-hover">
+          <Button className="bg-gradient-primary hover:bg-primary-hover" onClick={() => window.location.href = '/products'}>
             Xem tất cả sản phẩm
           </Button>
         </div>

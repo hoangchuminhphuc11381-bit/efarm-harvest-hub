@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Leaf, TreePine, Coffee as CoffeeIcon } from "lucide-react";
+import { ArrowRight, Leaf, TreePine, Coffee as CoffeeIcon, ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import productTea from "@/assets/product-tea.jpg";
@@ -69,6 +69,17 @@ const Products = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Header */}
+      <div className="bg-background border-b border-border p-4">
+        <div className="container mx-auto flex items-center gap-4">
+          <Button variant="ghost" onClick={() => window.location.href = '/'}>
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Trang chủ
+          </Button>
+          <h1 className="text-xl font-semibold">Danh mục sản phẩm</h1>
+        </div>
+      </div>
+      
       <Header />
       <main>
         {/* Hero Section */}

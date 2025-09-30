@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Clock, Gavel, TrendingUp, Users, Eye } from 'lucide-react';
+import { Clock, Gavel, TrendingUp, Users, Eye, ArrowLeft } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface AuctionItem {
@@ -136,6 +136,17 @@ const Auction = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      {/* Header */}
+      <div className="bg-background border-b border-border p-4">
+        <div className="container mx-auto flex items-center gap-4">
+          <Button variant="ghost" onClick={() => window.location.href = '/'}>
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Trang chủ
+          </Button>
+          <h1 className="text-xl font-semibold">Đấu giá nông sản</h1>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="bg-gradient-primary text-white py-20">
         <div className="container mx-auto px-6 text-center">

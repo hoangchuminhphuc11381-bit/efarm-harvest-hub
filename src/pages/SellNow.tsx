@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
-import { Upload, ImagePlus, DollarSign, Truck, User, Package } from 'lucide-react';
+import { Upload, ImagePlus, DollarSign, Truck, User, Package, ArrowLeft } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const SellNow = () => {
@@ -71,6 +71,17 @@ const SellNow = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      {/* Header */}
+      <div className="bg-background border-b border-border p-4">
+        <div className="container mx-auto flex items-center gap-4">
+          <Button variant="ghost" onClick={() => window.location.href = '/'}>
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Trang chủ
+          </Button>
+          <h1 className="text-xl font-semibold">Đăng bán sản phẩm</h1>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="bg-gradient-primary text-white py-20">
         <div className="container mx-auto px-6 text-center">

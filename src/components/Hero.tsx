@@ -56,7 +56,7 @@ const Hero = () => {
                   <SelectItem value="coffee">Cà phê</SelectItem>
                 </SelectContent>
               </Select>
-              <Button className="h-12 px-8 bg-gradient-primary hover:bg-primary-hover">
+              <Button className="h-12 px-8 bg-gradient-primary hover:bg-primary-hover" onClick={() => window.location.href = '/products'}>
                 <Search className="h-5 w-5 mr-2" />
                 Tìm kiếm
               </Button>
@@ -65,11 +65,11 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <Button size="lg" className="bg-gradient-primary hover:bg-primary-hover text-lg px-8 py-4">
+            <Button size="lg" className="bg-gradient-primary hover:bg-primary-hover text-lg px-8 py-4" onClick={() => window.location.href = '/auction'}>
               <TrendingUp className="h-5 w-5 mr-2" />
               Tham gia đấu giá
             </Button>
-            <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-foreground backdrop-blur-sm text-lg px-8 py-4">
+            <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-foreground backdrop-blur-sm text-lg px-8 py-4" onClick={() => window.location.href = '/sell'}>
               <Users className="h-5 w-5 mr-2" />
               Đăng bán ngay
             </Button>
