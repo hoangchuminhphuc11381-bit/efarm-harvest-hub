@@ -1,8 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Leaf, Coffee, TreePine, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import categoryTea from "@/assets/category-tea.jpg";
+import categoryCashew from "@/assets/category-cashew.jpg";
+import categoryDurian from "@/assets/category-durian.jpg";
 
 const ProductCategories = () => {
   const { t } = useTranslation();
@@ -11,34 +14,31 @@ const ProductCategories = () => {
       id: "tea",
       title: "Trà Việt Nam",
       description: t("categories.teaDesc", { defaultValue: "Trà xanh, trà ô long, trà đặc sản từ các vùng trồng nổi tiếng" }),
-      icon: Leaf,
       color: "tea",
       products: t("categories.teaProducts", { defaultValue: "2,500+ sản phẩm" }),
       regions: t("categories.teaRegions", { defaultValue: "Thái Nguyên, Lâm Đồng, Phú Thọ" }),
       price: t("categories.teaPrice", { defaultValue: "50,000 - 2,000,000 VNĐ/kg" }),
-      image: "🍃"
+      image: categoryTea
     },
     {
       id: "cashew",
       title: "Hạt Điều",
       description: t("categories.cashewDesc", { defaultValue: "Hạt điều nguyên liệu và chế biến từ Bình Phước, Đồng Nai" }),
-      icon: Coffee,
       color: "cashew", 
       products: t("categories.cashewProducts", { defaultValue: "1,200+ sản phẩm" }),
       regions: t("categories.cashewRegions", { defaultValue: "Bình Phước, Đồng Nai, Gia Lai" }),
       price: t("categories.cashewPrice", { defaultValue: "200,000 - 800,000 VNĐ/kg" }),
-      image: "🥜"
+      image: categoryCashew
     },
     {
       id: "durian",
       title: "Sầu Riêng",
       description: t("categories.durianDesc", { defaultValue: "Sầu riêng tươi và đông lạnh xuất khẩu chất lượng cao" }),
-      icon: TreePine,
       color: "durian",
       products: t("categories.durianProducts", { defaultValue: "800+ sản phẩm" }), 
       regions: t("categories.durianRegions", { defaultValue: "Đắk Lắk, Tiền Giang, Đồng Tháp" }),
       price: t("categories.durianPrice", { defaultValue: "80,000 - 300,000 VNĐ/kg" }),
-      image: "🌰"
+      image: categoryDurian
     }
   ];
 
@@ -56,13 +56,12 @@ const ProductCategories = () => {
 
         <div className="grid md:grid-cols-3 gap-8">
           {categories.map((category) => {
-            const IconComponent = category.icon;
             return (
               <Card key={category.id} className="group hover:shadow-organic transition-all duration-300 hover:-translate-y-1 border-0 shadow-card">
                 <CardHeader className="text-center pb-4">
                   <div className="mx-auto mb-4 relative">
-                    <div className={`w-20 h-20 rounded-2xl bg-${category.color}/10 flex items-center justify-center mb-3 mx-auto group-hover:scale-110 transition-transform duration-300`}>
-                      <span className="text-4xl">{category.image}</span>
+                    <div className="w-32 h-32 rounded-2xl overflow-hidden mb-3 mx-auto group-hover:scale-105 transition-transform duration-300 shadow-md">
+                      <img src={category.image} alt={category.title} className="w-full h-full object-cover" />
                     </div>
                     <Badge 
                       variant="secondary" 

@@ -308,7 +308,6 @@ const MarketPrices = () => {
                         <th className="text-right p-3 font-semibold">{t('market.table.lowest')}</th>
                         <th className="text-right p-3 font-semibold">{t('market.table.volume')}</th>
                         <th className="text-center p-3 font-semibold">{t('market.table.change')}</th>
-                        <th className="text-center p-3 font-semibold">{t('market.table.forecast')}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -343,9 +342,6 @@ const MarketPrices = () => {
                               {getTrendIcon(item.change)}
                               <span>{Math.abs(item.change)}%</span>
                             </div>
-                          </td>
-                          <td className="p-3 text-center">
-                            {getForecastBadge(item.forecast)}
                           </td>
                         </tr>
                       ))}

@@ -120,8 +120,7 @@ const Header = () => {
             <li><a href="/" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.home")}</a></li>
             <li><a href="/products" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.products")}</a></li>
             <li><a href="/auction" className="text-secondary-foreground hover:text-accent transition-colors">{t("header.auction")}</a></li>
-            <li><a href="/suppliers" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.suppliers")}</a></li>
-            <li><a href="/services" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.exportServices")}</a></li>
+            <li><a href="/suppliers" className="text-secondary-foreground hover:text-primary transition-colors">Nhà thu mua</a></li>
             <li><a href="/market" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.marketPrices")}</a></li>
             <li><a href="/contact" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.contact")}</a></li>
             <li><a href="/checkout" className="text-secondary-foreground hover:text-primary transition-colors">{t("header.checkout")}</a></li>
