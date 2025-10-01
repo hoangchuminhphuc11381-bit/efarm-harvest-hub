@@ -15,7 +15,7 @@ const TrustSection = () => {
     },
     {
       icon: Award,
-      title: t("trust.featureSuppliersTitle", { defaultValue: "Nhà cung cấp uy tín" }),
+      title: t("trust.featureSuppliersTitle", { defaultValue: "Nhà thu mua uy tín" }),
       description: t("trust.featureSuppliersDesc", { defaultValue: "Đối tác với các HTX và doanh nghiệp có uy tín hàng đầu" }),
       stats: t("trust.featureSuppliersStats", { defaultValue: "1,000+ đối tác" }),
       color: "text-accent"

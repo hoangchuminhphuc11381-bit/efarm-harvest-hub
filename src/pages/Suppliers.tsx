@@ -14,7 +14,7 @@ const Suppliers = () => {
       name: "Công ty Cổ phần Phúc Sinh",
       category: "Hạt Điều",
       location: "Bình Phước",
-      description: "Nhà cung cấp hạt điều hàng đầu Việt Nam với hơn 30 năm kinh nghiệm xuất khẩu sang 50+ quốc gia",
+      description: "Nhà thu mua hạt điều hàng đầu Việt Nam với hơn 30 năm kinh nghiệm xuất khẩu sang 50+ quốc gia",
       products: ["Hạt điều W240", "Hạt điều W320", "Hạt điều W450"],
       certifications: ["HACCP", "ISO 22000", "BRC", "Organic"],
       capacity: "50,000 tấn/năm",

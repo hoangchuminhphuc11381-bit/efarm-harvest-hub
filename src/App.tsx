@@ -15,6 +15,7 @@ import Suppliers from "./pages/Suppliers";
 import ExportServices from "./pages/ExportServices";
 import MarketPrices from "./pages/MarketPrices";
 import NotFound from "./pages/NotFound";
+import ChatWidget from "./components/ChatWidget";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <ChatWidget />
     </TooltipProvider>
   </QueryClientProvider>
 );
