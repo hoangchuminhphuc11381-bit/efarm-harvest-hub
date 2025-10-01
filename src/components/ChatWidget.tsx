@@ -5,7 +5,7 @@ type ChatMessage = {
   content: string;
 };
 
-const API_BASE = "https://efarm-bot.onrender.com";
+const API_BASE = "https://efarm-bot-1.onrender.com";
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
