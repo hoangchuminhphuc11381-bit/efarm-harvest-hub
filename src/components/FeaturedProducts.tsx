@@ -1,14 +1,19 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, MapPin, Award, Timer, Heart } from "lucide-react";
+import { Star, MapPin, Award, Timer, Heart, ShoppingCart } from "lucide-react";
 import productShowcase from "@/assets/product-showcase.jpg";
 import productCashew from "@/assets/product-cashew.jpg";
 import productDurian from "@/assets/product-durian.jpg";
 import { useTranslation } from "react-i18next";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 const FeaturedProducts = () => {
   const { t, i18n } = useTranslation();
+  const { addToCart, isInCart } = useCart();
+  const { toast } = useToast();
+  
   const products = [
     {
       id: 1,
@@ -196,8 +201,28 @@ const FeaturedProducts = () => {
                       {t("featured.joinAuction")}
                     </Button>
                   ) : (
-                    <Button className="w-full bg-gradient-primary hover:bg-primary-hover" onClick={() => window.location.href = '/checkout'}>
-                      {t("featured.requestQuote")}
+                    <Button 
+                      className="w-full bg-gradient-primary hover:bg-primary-hover"
+                      onClick={() => {
+                        addToCart({
+                          id: product.id,
+                          name: product.name,
+                          price: product.price,
+                          image: product.image,
+                          supplier: product.supplier,
+                          origin: product.origin,
+                          unit: product.unit,
+                          moq: product.moq
+                        });
+                        toast({
+                          title: "Đã thêm vào giỏ hàng!",
+                          description: `${product.name} đã được thêm vào giỏ hàng của bạn.`,
+                        });
+                      }}
+                      disabled={isInCart(product.id)}
+                    >
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      {isInCart(product.id) ? "Đã có trong giỏ" : "Thêm vào giỏ"}
                     </Button>
                   )}
                   <Button variant="outline" className="w-full" size="sm" onClick={() => window.location.href = '/products'}>

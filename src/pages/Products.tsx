@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Leaf, TreePine, Coffee as CoffeeIcon, ArrowLeft } from "lucide-react";
+import { ArrowRight, Leaf, TreePine, Coffee as CoffeeIcon, ArrowLeft, ShoppingCart } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import productTea from "@/assets/product-tea.jpg";
@@ -9,9 +9,14 @@ import productCashew from "@/assets/product-cashew.jpg";
 import productDurian from "@/assets/product-durian.jpg";
 import productCoffee from "@/assets/product-cafe.jpg";
 import { useTranslation } from "react-i18next";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 const Products = () => {
   const { t } = useTranslation();
+  const { addToCart, isInCart } = useCart();
+  const { toast } = useToast();
+  
   const products = [
     {
       id: "tea",
@@ -158,18 +163,36 @@ const Products = () => {
 
                       <div className="space-y-2">
                         <Button 
-                          className="w-full bg-gradient-primary hover:bg-primary-hover group"
-                          onClick={() => window.location.href = `/auction?product=${product.id}`}
+                          className="w-full bg-gradient-primary hover:bg-primary-hover"
+                          onClick={() => {
+                            addToCart({
+                              id: product.id,
+                              name: product.title,
+                              title: product.title,
+                              price: product.startingPrice,
+                              image: product.image,
+                              origin: product.origin,
+                              unit: "kg",
+                              quantity: product.quantity,
+                              description: product.description
+                            });
+                            toast({
+                              title: "Đã thêm vào giỏ hàng!",
+                              description: `${product.title} đã được thêm vào giỏ hàng của bạn.`,
+                            });
+                          }}
+                          disabled={isInCart(product.id)}
                         >
-                          {t('featured.joinAuction')}
-                          <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                          <ShoppingCart className="h-4 w-4 mr-2" />
+                          {isInCart(product.id) ? "Đã có trong giỏ" : "Thêm vào giỏ"}
                         </Button>
                         <Button 
                           variant="outline" 
                           className="w-full border-border hover:bg-accent/10"
-                          onClick={() => window.location.href = `/products/${product.id}`}
+                          onClick={() => window.location.href = `/auction?product=${product.id}`}
                         >
-                          {t('featured.viewDetail')}
+                          {t('featured.joinAuction')}
+                          <ArrowRight className="h-4 w-4 ml-2" />
                         </Button>
                       </div>
                     </CardContent>

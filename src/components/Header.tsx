@@ -11,13 +11,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.png";
 import { useTranslation } from "react-i18next";
+import { useCart } from "@/contexts/CartContext";
+import CartSheet from "@/components/CartSheet";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
   const [language, setLanguage] = useState<string>(
     (localStorage.getItem("i18nextLng") || "vi").toUpperCase()
   );
-  const [cartItems] = useState(3);
+  const { getTotalItems } = useCart();
+  const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
     const current = i18n.language || "vi";
@@ -97,14 +100,16 @@ const Header = () => {
               {t("header.business")}
             </Button>
 
-            <Button variant="ghost" className="relative">
+            <Button variant="ghost" className="relative" onClick={() => setCartOpen(true)}>
               <ShoppingCart className="h-5 w-5" />
-              {cartItems > 0 && (
+              {getTotalItems() > 0 && (
                 <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center text-xs bg-accent text-accent-foreground">
-                  {cartItems}
+                  {getTotalItems()}
                 </Badge>
               )}
             </Button>
+
+            <CartSheet open={cartOpen} onOpenChange={setCartOpen} />
 
             <Button variant="ghost" className="md:hidden">
               <Menu className="h-5 w-5" />
