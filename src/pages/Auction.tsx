@@ -6,6 +6,11 @@ import { Badge } from '@/components/ui/badge';
 import { Clock, Gavel, TrendingUp, Users, Eye, ArrowLeft } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
+import AuctionCheckoutDialog from '@/components/AuctionCheckoutDialog';
+import auctionCoffee from '@/assets/auction-coffee.jpg';
+import auctionCashew from '@/assets/auction-cashew.jpg';
+import auctionTea from '@/assets/auction-tea.jpg';
+import auctionDurian from '@/assets/auction-durian.jpg';
 
 interface AuctionItem {
   id: string;
@@ -26,12 +31,20 @@ const Auction = () => {
   const { t, i18n } = useTranslation();
   const [selectedAuction, setSelectedAuction] = useState<string | null>(null);
   const [bidAmounts, setBidAmounts] = useState<{ [key: string]: string }>({});
+  const [checkoutDialogOpen, setCheckoutDialogOpen] = useState(false);
+  const [checkoutItem, setCheckoutItem] = useState<{
+    title: string;
+    image: string;
+    finalBid: number;
+    quantity: string;
+    seller: string;
+  } | null>(null);
 
   const auctionItems: AuctionItem[] = [
     {
       id: '1',
       title: 'Cà Phê Arabica Đà Lạt - Hạt Rang Xay',
-      image: '/src/assets/product-coffee.jpg',
+      image: auctionCoffee,
       currentBid: 85000,
       minIncrement: 5000,
       endTime: new Date(Date.now() + 2 * 60 * 60 * 1000), // 2 hours from now
@@ -44,7 +57,7 @@ const Auction = () => {
     {
       id: '2', 
       title: 'Hạt Điều Rang Muối Cao Cấp',
-      image: '/src/assets/product-cashew-new.jpg',
+      image: auctionCashew,
       currentBid: 120000,
       minIncrement: 10000,
       endTime: new Date(Date.now() + 4 * 60 * 60 * 1000), // 4 hours from now
@@ -57,7 +70,7 @@ const Auction = () => {
     {
       id: '3',
       title: 'Trà Oolong Thái Nguyên Đặc Biệt', 
-      image: '/src/assets/product-tea-new.jpg',
+      image: auctionTea,
       currentBid: 350000,
       minIncrement: 15000,
       endTime: new Date(Date.now() + 6 * 60 * 60 * 1000), // 6 hours from now
@@ -70,7 +83,7 @@ const Auction = () => {
     {
       id: '4',
       title: 'Sầu Riêng Ri6 Đắk Lắk Tươi Ngon',
-      image: '/src/assets/product-durian-new.jpg',
+      image: auctionDurian,
       currentBid: 45000,
       minIncrement: 2000,
       endTime: new Date(Date.now() + 30 * 60 * 1000), // 30 minutes from now  
@@ -115,6 +128,17 @@ const Auction = () => {
     const minBid = currentBid + minIncrement;
     
     if (bidAmount >= minBid) {
+      const item = auctionItems.find(i => i.id === auctionId);
+      if (item) {
+        setCheckoutItem({
+          title: item.title,
+          image: item.image,
+          finalBid: bidAmount,
+          quantity: item.quantity,
+          seller: item.seller,
+        });
+        setCheckoutDialogOpen(true);
+      }
       toast({
         title: t('auction.toastSuccessTitle'),
         description: t('auction.toastSuccessDesc', { amount: bidAmount.toLocaleString() }),
@@ -204,7 +228,7 @@ const Auction = () => {
                   <img 
                     src={item.image} 
                     alt={item.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-64 object-cover"
                   />
                   <Badge className="absolute top-4 right-4 bg-red-500 text-white">
                     <Clock className="w-3 h-3 mr-1" />
@@ -302,6 +326,13 @@ const Auction = () => {
           </div>
         </section>
       </div>
+
+      {/* Checkout Dialog */}
+      <AuctionCheckoutDialog
+        open={checkoutDialogOpen}
+        onOpenChange={setCheckoutDialogOpen}
+        item={checkoutItem}
+      />
     </div>
   );
 };

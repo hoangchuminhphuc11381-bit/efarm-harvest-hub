@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import categoryTea from "@/assets/category-tea.jpg";
 import categoryCashew from "@/assets/category-cashew.jpg";
-import categoryDurian from "@/assets/category-durian.jpg";
+import categoryDurian from "@/assets/category-durian-hq.jpg";
 
 const ProductCategories = () => {
   const { t } = useTranslation();
@@ -60,7 +60,7 @@ const ProductCategories = () => {
               <Card key={category.id} className="group hover:shadow-organic transition-all duration-300 hover:-translate-y-1 border-0 shadow-card">
                 <CardHeader className="text-center pb-4">
                   <div className="mx-auto mb-4 relative">
-                    <div className="w-32 h-32 rounded-2xl overflow-hidden mb-3 mx-auto group-hover:scale-105 transition-transform duration-300 shadow-md">
+                    <div className="w-48 h-48 rounded-2xl overflow-hidden mb-3 mx-auto group-hover:scale-105 transition-transform duration-300 shadow-lg">
                       <img src={category.image} alt={category.title} className="w-full h-full object-cover" />
                     </div>
                     <Badge 
