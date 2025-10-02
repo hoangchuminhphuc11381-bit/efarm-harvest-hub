@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import categoryTea from "@/assets/category-tea.jpg";
 import categoryCashew from "@/assets/category-cashew.jpg";
-import categoryDurian from "@/assets/category-durian-hq.jpg";
+import categoryDurian from "@/assets/category-durian-new.webp";
 
 const ProductCategories = () => {
   const { t } = useTranslation();
