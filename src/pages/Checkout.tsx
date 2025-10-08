@@ -321,6 +321,20 @@ const Checkout = () => {
                           </div>
                         </div>
                       </div>
+                      <div className="pt-2 space-y-3">
+                        <h4 className="font-medium">{t('checkout.qrInfoTitle')}</h4>
+                        <div className="flex items-center gap-4">
+                          <img
+                            src="/QR.png"
+                            alt="QR code"
+                            className="w-44 h-44 rounded-md border"
+                          />
+                          <div className="text-sm text-foreground/70 space-y-2">
+                            <p>{t('checkout.qrAmountLabel')} <span className="font-medium text-primary">{formatPrice(total)}</span></p>
+                            <p>{t('checkout.qrContentLabel')} {t('checkout.qrContentValue')}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   )}
 
@@ -361,7 +375,7 @@ const Checkout = () => {
                       <h4 className="font-medium">{t('checkout.qrInfoTitle')}</h4>
                       <div className="flex items-center gap-4">
                         <img
-                          src={`https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(`${t('checkout.qrContentValue')} - ${total} VND`)}`}
+                          src="/QR.png"
                           alt="QR code"
                           className="w-44 h-44 rounded-md border"
                         />
