@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { ShoppingBag, CreditCard, Truck, MapPin, Phone, User, Wallet, Receipt, ArrowLeft } from 'lucide-react';
+import { ShoppingBag, CreditCard, Truck, MapPin, Phone, User, Wallet, Receipt, ArrowLeft, QrCode } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslation } from 'react-i18next';
 
@@ -262,6 +262,19 @@ const Checkout = () => {
                         </div>
                       </Label>
                     </div>
+
+                    <div className="flex items-center space-x-2 p-4 border rounded-lg">
+                      <RadioGroupItem value="qrcode" id="qrcode" />
+                      <Label htmlFor="qrcode" className="flex-1 cursor-pointer">
+                        <div className="flex items-center gap-3">
+                          <QrCode className="w-5 h-5 text-primary" />
+                          <div>
+                            <div className="font-medium">{t('checkout.qrTitle')}</div>
+                            <div className="text-sm text-foreground/70">{t('checkout.qrDesc')}</div>
+                          </div>
+                        </div>
+                      </Label>
+                    </div>
                   </RadioGroup>
 
                   {/* Card Payment Form */}
@@ -337,6 +350,24 @@ const Checkout = () => {
                             value={formData.ewalletPhone}
                             onChange={(e) => handleInputChange('ewalletPhone', e.target.value)}
                           />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* QR Code Payment Form */}
+                  {paymentMethod === 'qrcode' && (
+                    <div className="space-y-4 p-4 bg-muted rounded-lg">
+                      <h4 className="font-medium">{t('checkout.qrInfoTitle')}</h4>
+                      <div className="flex items-center gap-4">
+                        <img
+                          src={`https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(`${t('checkout.qrContentValue')} - ${total} VND`)}`}
+                          alt="QR code"
+                          className="w-44 h-44 rounded-md border"
+                        />
+                        <div className="text-sm text-foreground/70 space-y-2">
+                          <p>{t('checkout.qrAmountLabel')} <span className="font-medium text-primary">{formatPrice(total)}</span></p>
+                          <p>{t('checkout.qrContentLabel')} {t('checkout.qrContentValue')}</p>
                         </div>
                       </div>
                     </div>
